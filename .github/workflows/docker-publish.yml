@@ -1,0 +1,10 @@
+name: Build and push Docker images
+  uses: docker/build-push-action@v1.1.0
+  with:
+    username: grepnull
+    password: ${{ secrets.docker_key }}
+    repository: gloomhaven-helper
+    tag_with_ref: true
+    tag_with_sha: true
+    add_git_labels: true
+    
