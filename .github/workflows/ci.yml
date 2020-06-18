@@ -18,7 +18,7 @@ jobs:
       with:
         username: grepnull
         password: ${{ secrets.DOCKER_KEY }}
-        repository: gloomhaven-helper
+        repository: grepnull/gloomhaven-helper-headless
         tag_with_ref: true
         tag_with_sha: true
         add_git_labels: true
