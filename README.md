@@ -83,3 +83,7 @@ Everything else is standard Docker-ization details. Look at `Dockerfile` and `en
 
 [GHH]: http://esotericsoftware.com/gloomhaven-helper
 [GL]: https://www.lwjgl.org
+
+## Support
+
+If you'd like to support this project, you should instead support [Gloomhaven Helper][GHH] directly by [donating](http://esotericsoftware.com/gloomhaven-helper#Donations) or purchasing their [iOS](https://itunes.apple.com/app/Gloomhaven-Helper/id1456538503) and [Android](https://play.google.com/store/apps/details?id=com.esotericsoftware.gloomhavenhelper) apps.
