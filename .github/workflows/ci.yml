@@ -27,5 +27,5 @@ jobs:
       uses: peter-evans/dockerhub-description@v2
       env:
         DOCKERHUB_USERNAME: grepnull
-        DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_KEY }}
+        DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         DOCKERHUB_REPOSITORY: grepnull/gloomhaven-helper-headless
