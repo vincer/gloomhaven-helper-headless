@@ -1,3 +1,5 @@
+![CI](https://github.com/vincer/gloomhaven-helper-headless/workflows/CI/badge.svg)
+
 # Headless Gloomhaven Helper Server
 
 [Gloomhaven Helper][GHH] has a server/client mode that has been super-useful for my friends and me. The only hiccup is since one of us has to act as the server, the server IP can change depending on who is playing, where we are, etc. If we're playing remotely this can get particularly tricky as one of us has to set up port-forwarding in our router, find our external IP, etc.
