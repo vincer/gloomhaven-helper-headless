@@ -10,11 +10,11 @@ But my server is headless (i.e. it has no monitor connected to it. I manage it v
 
 ## Installing and Running
 
-I'll publish to Docker Hub in the future, but for now:
+The image is [available](https://hub.docker.com/r/grepnull/gloomhaven-helper-headless) on Docker Hub.
 
-1. Clone the repo
-2. `docker build -t ghh-headless .`
-3. `docker run -p 58888:58888 --name ghh-headless -d ghh-headless`
+```
+docker run -p 58888:58888 --name ghh-headless -d ghh-headless
+```
 
 If you then run `docker logs --follow ghh-headless` within a minute or so you should see:
 ```
@@ -23,6 +23,14 @@ No existing config. Setting up basic one.
 Starting Gloomhaven Helper
 00:00  INFO: [broadcast] Listening on port: UDP 58887
 00:01  INFO: [server] Listening on port: TCP 58888
+```
+
+## Docker Compose
+
+In this repo there's also a Docker Compose configuration for ease of set up. Either clone the repo or just [download](https://raw.githubusercontent.com/vincer/gloomhaven-helper-headless/master/docker-compose.yml) the config and then follow the instructions in [Preserving State](#Preserving-State). Then run:
+
+```
+docker-compose up -d
 ```
 
 ## Preserving State

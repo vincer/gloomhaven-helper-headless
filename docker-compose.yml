@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  gloomhaven-helper-headless:
+    image: grepnull/gloomhaven-helper-headless:latest
+    restart: always
+    volumes:
+      - ./ghh:/root/.ghh
+    ports:
+      - 58887:58887/udp
+      - 58888:58888
