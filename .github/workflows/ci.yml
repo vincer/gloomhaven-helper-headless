@@ -5,6 +5,7 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispach:
 
 jobs:
   build:
@@ -12,6 +13,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Get latest GHH version
+      uses: ./latest-gloomhaven-helper-action
+      id: version
+
+    - name: Version debug
+      run: echo "The latest GHH version is ${{ steps.version.outputs.version }}"
 
     - name: Build and push Docker images
       uses: docker/build-push-action@v1
