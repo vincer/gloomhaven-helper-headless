@@ -20,12 +20,15 @@ jobs:
 
     - name: Build and push Docker images
       uses: docker/build-push-action@v1
+      env:
+        DOCKER_BUILDKIT: 1
       with:
         username: grepnull
         password: ${{ secrets.DOCKER_KEY }}
         repository: grepnull/gloomhaven-helper-headless
         always_pull: true
-        build_args: "version=${{ steps.version.outputs.version }}"
+        caches_from: grepnull/gloomhaven-helper-headless:latest
+        build_args: "version=${{ steps.version.outputs.version }},BUILDKIT_INLINE_CACHE=1"
         tag_with_ref: true
         tag_with_sha: true
         tags: "${{ steps.version.outputs.version }},${{ steps.version.outputs.major }},${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}"
