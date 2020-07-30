@@ -18,15 +18,13 @@ jobs:
       uses: ./latest-gloomhaven-helper-action
       id: version
 
-    - name: Version debug
-      run: echo "The latest GHH version is ${{ steps.version.outputs.version }}"
-
     - name: Build and push Docker images
       uses: docker/build-push-action@v1
       with:
         username: grepnull
         password: ${{ secrets.DOCKER_KEY }}
         repository: grepnull/gloomhaven-helper-headless
+        build_args: "version=${{ steps.version.outputs.version }}"
         tag_with_ref: true
         tag_with_sha: true
         add_git_labels: true
