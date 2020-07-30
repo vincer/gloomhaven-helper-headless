@@ -27,7 +27,7 @@ jobs:
         password: ${{ secrets.DOCKER_KEY }}
         repository: grepnull/gloomhaven-helper-headless
         always_pull: true
-        caches_from: grepnull/gloomhaven-helper-headless:latest
+        cache_froms: grepnull/gloomhaven-helper-headless:latest
         build_args: "version=${{ steps.version.outputs.version }},BUILDKIT_INLINE_CACHE=1"
         tag_with_ref: true
         tag_with_sha: true
