@@ -1,0 +1,8 @@
+name: 'Latest Gloomhaven Helper Version'
+description: 'Fetch the latest version of Gloomhaven Helper.'
+outputs:
+  version:
+    description: 'Latest Gloomhaven Helper version'
+runs:
+  using: 'node14'
+  main: 'version.js'
