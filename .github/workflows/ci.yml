@@ -19,14 +19,14 @@ jobs:
       id: version
 
     - name: Build and push Docker images
-      uses: aevea/action-kaniko@v0.4.0
+      uses: aevea/action-kaniko@master
       with:
         username: grepnull
         password: ${{ secrets.DOCKER_KEY }}
         image: grepnull/gloomhaven-helper-headless
         cache: true
         cache_registry: grepnull/cache
-        skip_unchanged_digest: true
+        #skip_unchanged_digest: true
         extra_args: "--build-arg version=${{ steps.version.outputs.version }}"
 #"${{ steps.version.outputs.version }},${{ steps.version.outputs.major }},${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }
       # uses: docker/build-push-action@v1
