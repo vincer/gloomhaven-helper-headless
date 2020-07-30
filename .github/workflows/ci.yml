@@ -19,33 +19,19 @@ jobs:
       id: version
 
     - name: Build and push Docker images
-      uses: aevea/action-kaniko@master
+      uses: aevea/action-kaniko@v0.5.1
       with:
         username: grepnull
         password: ${{ secrets.DOCKER_KEY }}
         image: grepnull/gloomhaven-helper-headless
         cache: true
         cache_registry: grepnull/cache
-        skip_unchanged_digest: true
         extra_args: "--build-arg version=${{ steps.version.outputs.version }}"
-#"${{ steps.version.outputs.version }},${{ steps.version.outputs.major }},${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }
-      # uses: docker/build-push-action@v1
-      # env:
-      #   DOCKER_BUILDKIT: 1
-      # with:
-      #   username: grepnull
-      #   password: ${{ secrets.DOCKER_KEY }}
-      #   repository: grepnull/gloomhaven-helper-headless
-      #   always_pull: true
-      #   cache_froms: grepnull/gloomhaven-helper-headless:auto-ci,openjdk:14.0.2-slim-buster
-      #   build_args: "version=${{ steps.version.outputs.version }},BUILDKIT_INLINE_CACHE=1"
-      #   tag_with_ref: true
-      #   tag_with_sha: true
-      #   tags: "${{ steps.version.outputs.version }},${{ steps.version.outputs.major }},${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}"
-      #   add_git_labels: true
+        # skip_unchanged_digest: true ### Broken as of v0.5.1
 
     - name: Docker Hub Description
       uses: peter-evans/dockerhub-description@v2
+      if: github.ref == 'refs/heads/master'
       env:
         DOCKERHUB_USERNAME: grepnull
         DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
