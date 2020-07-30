@@ -14,18 +14,24 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Get latest GHH version
+      uses: ./latest-gloomhaven-helper-action
+      id: version
+
     - name: Build and push Docker images
-      uses: docker/build-push-action@v1
+      uses: aevea/action-kaniko@v0.5.1
       with:
         username: grepnull
         password: ${{ secrets.DOCKER_KEY }}
-        repository: grepnull/gloomhaven-helper-headless
-        tag_with_ref: true
-        tag_with_sha: true
-        add_git_labels: true
+        image: grepnull/gloomhaven-helper-headless
+        cache: true
+        cache_registry: grepnull/cache
+        extra_args: "--build-arg version=${{ steps.version.outputs.version }}"
+        # skip_unchanged_digest: true ### Broken as of v0.5.1
 
     - name: Docker Hub Description
       uses: peter-evans/dockerhub-description@v2
+      if: github.ref == 'refs/heads/master'
       env:
         DOCKERHUB_USERNAME: grepnull
         DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
