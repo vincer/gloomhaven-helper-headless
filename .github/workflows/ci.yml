@@ -26,7 +26,7 @@ jobs:
         image: grepnull/gloomhaven-helper-headless
         cache: true
         cache_registry: grepnull/cache
-        #skip_unchanged_digest: true
+        skip_unchanged_digest: true
         extra_args: "--build-arg version=${{ steps.version.outputs.version }}"
 #"${{ steps.version.outputs.version }},${{ steps.version.outputs.major }},${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }
       # uses: docker/build-push-action@v1
