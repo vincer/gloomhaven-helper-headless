@@ -4,5 +4,5 @@ outputs:
   version:
     description: 'Latest Gloomhaven Helper version'
 runs:
-  using: 'node14'
+  using: 'node12'
   main: 'version.js'
