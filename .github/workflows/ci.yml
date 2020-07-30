@@ -3,11 +3,8 @@ name: CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
   schedule:
-    - cron: "16 * * * *"
-
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 jobs:
