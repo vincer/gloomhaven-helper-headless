@@ -24,6 +24,7 @@ jobs:
         username: grepnull
         password: ${{ secrets.DOCKER_KEY }}
         repository: grepnull/gloomhaven-helper-headless
+        always_pull: true
         build_args: "version=${{ steps.version.outputs.version }}"
         tag_with_ref: true
         tag_with_sha: true
