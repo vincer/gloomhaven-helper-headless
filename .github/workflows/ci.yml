@@ -26,7 +26,7 @@ jobs:
         image: grepnull/gloomhaven-helper-headless
         cache: true
         cache_registry: grepnull/cache
-        extra_args: "--build-arg version=${{ steps.version.outputs.version }}"
+        extra_args: "--build-arg version=${{ steps.version.outputs.version }} --destination grepnull/gloomhaven-helper-headless:${{ steps.version.outputs.version }} --destination grepnull/gloomhaven-helper-headless:${{ steps.version.outputs.major }} --destination grepnull/gloomhaven-helper-headless:${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}"
         # skip_unchanged_digest: true ### Broken as of v0.5.1
 
     - name: Docker Hub Description
