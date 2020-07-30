@@ -19,20 +19,29 @@ jobs:
       id: version
 
     - name: Build and push Docker images
-      uses: docker/build-push-action@v1
-      env:
-        DOCKER_BUILDKIT: 1
+      uses: aevea/action-kaniko@master
       with:
         username: grepnull
         password: ${{ secrets.DOCKER_KEY }}
-        repository: grepnull/gloomhaven-helper-headless
-        always_pull: true
-        cache_froms: grepnull/gloomhaven-helper-headless:auto-ci,openjdk:14.0.2-slim-buster
-        build_args: "version=${{ steps.version.outputs.version }},BUILDKIT_INLINE_CACHE=1"
-        tag_with_ref: true
-        tag_with_sha: true
-        tags: "${{ steps.version.outputs.version }},${{ steps.version.outputs.major }},${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}"
-        add_git_labels: true
+        image: grepnull/gloomhaven-helper-headless
+        cache: true
+        skip_unchanged_digest: true
+        extra_args: "--build-arg version=${{ steps.version.outputs.version }}"
+#"${{ steps.version.outputs.version }},${{ steps.version.outputs.major }},${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }
+      # uses: docker/build-push-action@v1
+      # env:
+      #   DOCKER_BUILDKIT: 1
+      # with:
+      #   username: grepnull
+      #   password: ${{ secrets.DOCKER_KEY }}
+      #   repository: grepnull/gloomhaven-helper-headless
+      #   always_pull: true
+      #   cache_froms: grepnull/gloomhaven-helper-headless:auto-ci,openjdk:14.0.2-slim-buster
+      #   build_args: "version=${{ steps.version.outputs.version }},BUILDKIT_INLINE_CACHE=1"
+      #   tag_with_ref: true
+      #   tag_with_sha: true
+      #   tags: "${{ steps.version.outputs.version }},${{ steps.version.outputs.major }},${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}"
+      #   add_git_labels: true
 
     - name: Docker Hub Description
       uses: peter-evans/dockerhub-description@v2
