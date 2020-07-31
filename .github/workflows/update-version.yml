@@ -18,6 +18,7 @@ jobs:
 
     - name: Update version
       run: echo ${{ steps.version.outputs.version }} > VERSION
+
     - name: Git commit and push
       uses: github-actions-x/commit@v2.6
       with:

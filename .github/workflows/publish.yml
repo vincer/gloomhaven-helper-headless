@@ -13,8 +13,10 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Get latest GHH version
-      uses: ./latest-gloomhaven-helper-action
-      id: version
+      run: echo "::set-env name=VERSION::$(cat GHH_VERSION)"
+
+    - name: Debug VERSION
+      run: echo $GHH_VERSION
 
     - name: Build and push Docker images
       uses: aevea/action-kaniko@v0.5.1
@@ -24,7 +26,8 @@ jobs:
         image: grepnull/gloomhaven-helper-headless
         cache: true
         cache_registry: grepnull/cache
-        extra_args: "--build-arg version=${{ steps.version.outputs.version }} --destination grepnull/gloomhaven-helper-headless:${{ steps.version.outputs.version }} --destination grepnull/gloomhaven-helper-headless:${{ steps.version.outputs.major }} --destination grepnull/gloomhaven-helper-headless:${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}"
+        extra_args: "--build-arg version=$GHH_VERSION --destination grepnull/gloomhaven-helper-headless:$GHH_VERSION"
+###  --destination grepnull/gloomhaven-helper-headless:${{ steps.version.outputs.major }} --destination grepnull/gloomhaven-helper-headless:${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}"
         # skip_unchanged_digest: true ### Broken as of v0.5.1
 
     - name: Docker Hub Description
