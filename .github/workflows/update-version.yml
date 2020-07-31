@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Get latest GHH version
+      uses: ./latest-gloomhaven-helper-action
+      id: version
+
+    - name: Update version
+      run: |
+        echo ${{ steps.version.outputs.version }} > VERSION
+        git commit VERSION -m "Bump version to ${{ steps.version.outputs.version }}"
+        git push
