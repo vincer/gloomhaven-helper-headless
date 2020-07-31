@@ -1,8 +1,6 @@
-name: CI
+name: Update Version
 
 on:
-  push:
-    branches: [ master ]
   schedule:
     - cron: "*/5 * * * *"
   workflow_dispatch:
