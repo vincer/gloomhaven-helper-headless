@@ -2,7 +2,7 @@ name: Update Version
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/30 * * * *"
   workflow_dispatch:
 
 jobs:
@@ -22,9 +22,9 @@ jobs:
     - name: Git commit and push
       uses: github-actions-x/commit@v2.6
       with:
-        github-token: ${{ secrets.GHH_GITHUB_TOKEN }}
+        github-token: ${{ secrets.GHH_GITHUB_TKEN }}
         push-branch: master
         commit-message: "Update version to ${{ steps.version.outputs.version }}"
         files: VERSION
-        name: vince rosso
+        name: vince rosso (auto)
         email: vincer@vincer.net
