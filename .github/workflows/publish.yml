@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Get latest GHH version
-      run: echo "::set-env name=VERSION::$(cat VERSION)"
+      run: echo "::set-env name=VERSION::$(echo -n $(cat VERSION))"
 
     - name: Debug VERSION
       run: echo $VERSION
