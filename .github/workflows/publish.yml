@@ -13,10 +13,27 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Get GHH version
-      run: echo "::set-env name=VERSION::$(echo -n $(cat VERSION))"
+      run: ./version-parse-step.sh
+      id: version
 
     - name: Debug VERSION
-      run: echo $VERSION
+      run: echo ${{ steps.version.outputs.version }}
+
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v1
+      env:
+        DOCKER_BUILDKIT: 1
+      with:
+        username: grepnull
+        password: ${{ secrets.DOCKER_KEY }}
+        repository: grepnull/gloomhaven-helper-headless
+        always_pull: true
+        cache_froms: grepnull/gloomhaven-helper-headless:auto-ci,openjdk:14.0.2-slim-buster
+        build_args: "version=${{ steps.version.outputs.version }},BUILDKIT_INLINE_CACHE=1"
+        tag_with_ref: true
+        tag_with_sha: true
+        tags: "${{ steps.version.outputs.version }},${{ steps.version.outputs.major }},${{ steps.version.outputs.major }}.${{ steps.version.outputs.minor }}"
+        add_git_labels: true
 
     - name: Build and push Docker images
       uses: aevea/action-kaniko@v0.5.1
