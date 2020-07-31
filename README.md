@@ -1,4 +1,7 @@
-![CI](https://github.com/vincer/gloomhaven-helper-headless/workflows/CI/badge.svg)
+![Publish](https://github.com/vincer/gloomhaven-helper-headless/workflows/Publish/badge.svg)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/vincer/gloomhaven-helper-headless)
+![Docker Pulls](https://img.shields.io/docker/pulls/grepnull/gloomhaven-helper-headless)
+![Docker Image Version (latest semver)](https://img.shields.io/docker/v/grepnull/gloomhaven-helper-headless?sort=semver)
 
 # Headless Gloomhaven Helper Server
 
