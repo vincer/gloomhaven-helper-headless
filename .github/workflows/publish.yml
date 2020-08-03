@@ -44,4 +44,4 @@ jobs:
         DOCKERHUB_REPOSITORY: grepnull/gloomhaven-helper-headless
     - name: Notify
       if: github.ref == 'refs/heads/master'
-      run:  curl -XPOST "https://api.prowlapp.com/publicapi/add?apikey=${{ secrets.PROWL_API_KEY }}&application=Gloomhaven%20Helper%20Headless&event=Updated&description=Version ${{ steps.version.outputs.version }}"
+      run:  curl -XPOST "https://api.prowlapp.com/publicapi/add?apikey=${{ secrets.PROWL_API_KEY }}&application=Updated%20Gloomhaven%20Helper%20Headless&description=v${{ steps.version.outputs.version }}"
